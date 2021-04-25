@@ -5,12 +5,17 @@ using TMPro;
 
 public class Player : MonoBehaviour
 {
+    public static Player Instance {get; set;}
+
     [Header("Player Properties")]
     [SerializeField] float movementSize;
     [SerializeField] float movementSpeed;
     [SerializeField] LayerMask tileLayer;
     [Space]
     [SerializeField] int movementPoints = 30;
+
+    [Header("Sound Effects")]
+    [SerializeField] AudioClip walkSfx;
 
     [Header("References")]
     [SerializeField] TMP_Text staminaText;
@@ -20,23 +25,36 @@ public class Player : MonoBehaviour
     Vector2 targetPosition;
     Vector2 direction;
 
+    Vector2 linearPosition;
+
     List<Tile> neighbours = new List<Tile>();
+    List<Tile_Bomb> bombs = new List<Tile_Bomb>();
     
     Animator animator;
     SpriteRenderer spriteRenderer;
+    AudioSource audio;
 
     int _movementPoints;
+
+    void Awake(){
+        Instance = this;
+    }
 
     void Start(){
         staminaText.text = movementPoints.ToString();
         _movementPoints = movementPoints;
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        audio = GetComponent<AudioSource>();
+        linearPosition = transform.position;
     }
 
     void Update(){
-        // if(Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
-        //     CheckMove(new Vector2(0,movementSize));
+         if(Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)){
+             Collider2D currentTile = Physics2D.OverlapPoint(transform.position, tileLayer);
+             if(currentTile && currentTile.GetComponent<Tile_Ladder>())
+                CheckMove(new Vector2(0,movementSize));
+        }
         if(Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)){
             CheckMove(new Vector2(0,-movementSize));
             //spriteRenderer
@@ -57,51 +75,82 @@ public class Player : MonoBehaviour
         if((Vector2)transform.position != targetPosition)
             transform.position = (Vector2)transform.position + direction * movementSpeed * Time.deltaTime;
         else{
+            linearPosition = targetPosition;
             transform.position = targetPosition;
             animator.SetBool("moving", false);
+            animator.SetBool("falling", false);
+            animator.SetBool("climbing", false);
+            audio.Stop();
             input = new Vector2(0, 0); // reset input vector
         }
     }
 
     // Check if the player can move into tile location
     void CheckMove(Vector2 wantedInput){
-        Collider2D hit = Physics2D.OverlapPoint(new Vector2(transform.position.x + wantedInput.x, 
-                                                            transform.position.y + wantedInput.y),
+        Collider2D hit = Physics2D.OverlapPoint(new Vector2(linearPosition.x + wantedInput.x, 
+                                                            linearPosition.y + wantedInput.y),
                                                             tileLayer);
         if(!hit) return;
 
         Tile _tile = hit.GetComponent<Tile>();
         if(_tile && _tile.canBeEntered){
-            DecreaseMovement(_tile.traversalCost);
+            DecreaseMovement(1);
+            
+            if(_tile is Tile_Bomb)
+                if(!bombs.Contains(_tile.GetComponent<Tile_Bomb>()) && !_tile.tileIsBroken) 
+                    bombs.Add(_tile.GetComponent<Tile_Bomb>());
+            
             if(_tile.EnterTile()){
+                audio.clip = walkSfx;
+                audio.Play();
+
                 input = wantedInput;
-                targetPosition = (Vector2)transform.position + input;
-                direction = (targetPosition - (Vector2)transform.position).normalized; 
-                animator.SetBool("moving", true);
-                // transform.position = (Vector2)transform.position + input;
-                // input = new Vector2(0,0);
+                targetPosition = (Vector2)linearPosition + input;
+                direction = (targetPosition - (Vector2)linearPosition).normalized;
+                if(input == new Vector2(0,-1))
+                    animator.SetBool("falling", true);
+                else if(input == new Vector2(0, 1))
+                    animator.SetBool("climbing", true);
+                else
+                    animator.SetBool("moving", true);
 
                 UpdateNeighbours(targetPosition);
             }
         }
     }
 
-    void DecreaseMovement(int amount){
+    public void DecreaseMovement(int amount){
         movementPoints -= amount;
         staminaText.text = movementPoints.ToString();
         if(movementPoints <= 0) ResetPlayer();
+
+        for(int i = 0;i< bombs.Count;i++){
+            if(!bombs[i]) return;
+
+            if(bombs[i].Countdown()){
+                if(bombs[i].PlayerIsNeighbours()) {
+                    ResetPlayer();
+                }else{
+                    bombs.Remove(bombs[i]);
+                }
+            }
+        }
     }
 
-    void ResetPlayer(){
+    public void ResetPlayer(){
         movementPoints = _movementPoints;
         staminaText.text = movementPoints.ToString();
-        transform.position = spawn.position;
 
-        // Change later
-        Tile[] tiles = FindObjectsOfType<Tile>();
-        foreach(Tile tile in tiles){
-            tile.RebuildTile();
-        }
+        transform.position = spawn.position;
+        linearPosition = spawn.position;
+        targetPosition = spawn.position;
+        input = new Vector2(0, 0);
+
+        animator.SetBool("moving", false);
+        animator.SetBool("falling", false);
+
+        World.Instance.ResetTiles();
+        bombs.Clear();
     }
 
     void UpdateNeighbours(Vector2 targetPos){

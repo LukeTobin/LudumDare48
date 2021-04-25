@@ -29,6 +29,9 @@ TextureImporter:
   - first:
       213: 5087484611084341502
     second: s4m_ur4i_huge-assetpack-tilemap_8
+  - first:
+      213: -7428975184089925353
+    second: s4m_ur4i_huge-assetpack-tilemap_9
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -318,7 +321,7 @@ TextureImporter:
         width: 8
         height: 8
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -326,6 +329,27 @@ TextureImporter:
       bones: []
       spriteID: ef0d2f39c406a9640800000000000000
       internalID: 5087484611084341502
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: s4m_ur4i_huge-assetpack-tilemap_9
+      rect:
+        serializedVersion: 2
+        x: 372
+        y: 748
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 719b0233e6af6e890800000000000000
+      internalID: -7428975184089925353
       vertices: []
       indices: 
       edges: []
