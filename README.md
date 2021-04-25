@@ -4,12 +4,7 @@ uwu
 
 ## Header
 
-Some text uwu
-The goal of this project is to create and publish a game within 10 weeks. The general concepts behind Samurai Shampoo are documented in ``ProjectProposal.docx``. 
-
-This project is worth 10 ECs, and everybody is expected to work 32 hours a week on this project.. 
-
-The work week for this project is Tuesday - Friday, 09:00 - 17:00, so 8 hours a day.
+Some text uwuW
 
 
 ## Another Header
