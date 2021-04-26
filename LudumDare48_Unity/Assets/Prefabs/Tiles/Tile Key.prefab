@@ -232,7 +232,7 @@ MonoBehaviour:
   pitchNoise: 0
   tileIsBroken: 0
   uniqueDestroyedSprite: {fileID: 0}
-  destroyColor: {r: 0, g: 0, b: 0, a: 1}
+  destroyColor: {r: 0, g: 0, b: 0, a: 0}
   spriteHides: 1
   uniqueHiddenSprite: {fileID: -5489629921847468251, guid: 214ed84a72f15014db6af9e13178953e, type: 3}
   hiddenColor: {r: 0.6313726, g: 0.6313726, b: 0.6313726, a: 1}

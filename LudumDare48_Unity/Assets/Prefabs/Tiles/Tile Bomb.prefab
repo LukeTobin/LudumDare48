@@ -74,8 +74,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -4230754953634570184, guid: 214ed84a72f15014db6af9e13178953e, type: 3}
-  m_Color: {r: 1, g: 0.2509804, b: 0.2509804, a: 1}
+  m_Sprite: {fileID: 21300000, guid: a929983b606f3044594b3d0a5757dfb8, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -198,7 +198,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.9375, y: 0.9375}
+    oldSize: {x: 1, y: 1}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -219,8 +219,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3080286992c504a46b6f4ff502ca6ae1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileSprite: {fileID: -4230754953634570184, guid: 214ed84a72f15014db6af9e13178953e, type: 3}
-  spriteColor: {r: 1, g: 0.2509804, b: 0.2509804, a: 1}
+  tileSprite: {fileID: 21300000, guid: a929983b606f3044594b3d0a5757dfb8, type: 3}
+  spriteColor: {r: 0.8666667, g: 0.85490197, b: 0.83137256, a: 1}
   canBeEntered: 1
   hitsRequired: 4
   traversalCost: 1
@@ -236,7 +236,7 @@ MonoBehaviour:
   spriteHides: 1
   uniqueHiddenSprite: {fileID: -5489629921847468251, guid: 214ed84a72f15014db6af9e13178953e, type: 3}
   hiddenColor: {r: 0.6313726, g: 0.6313726, b: 0.6313726, a: 1}
-  explodeDamage: 5
+  explodeDamage: 3
   indicatorSprite: {fileID: 819598047470993750, guid: d2fa85879a55e1744ab6084fabeb38d1, type: 3}
   tileLayer:
     serializedVersion: 2
