@@ -20,7 +20,10 @@ The game is made to be played on Desktop, but we're currently toying with the id
 
 ## Level
 
-[annotated level map/screenshots of level]
+![Alt Text](https://cdn.discordapp.com/attachments/275293865441755139/836350298191560764/cover.JPG)
+![Alt Text](https://cdn.discordapp.com/attachments/275293865441755139/836350278743752724/screenshot_1.JPG)
+![Alt Text](https://cdn.discordapp.com/attachments/275293865441755139/836350288457105448/screenshot_1.1.JPG)
+
 
 ## Technical Design
 
@@ -42,7 +45,7 @@ Since we're such a small team, we opted to use S4M_UR4I's asset pack from itch. 
 
 ## Sound
 
-All of our sound is from [ITCH LINK]. 
+All of our sound is by [Sidearm Studio.](https://assetstore.unity.com/packages/audio/sound-fx/ultimate-sound-fx-bundle-151756)
 
 
 # Download
