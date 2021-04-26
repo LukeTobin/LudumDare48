@@ -422,7 +422,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -25}
+  m_LocalPosition: {x: 0, y: -2, z: -25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -5860,6 +5860,8 @@ MonoBehaviour:
   rooms:
   - {fileID: 1623389801177876714, guid: 4a68fd095ceccfc4ebfc5a14f9e988d2, type: 3}
   - {fileID: -119469012711100905, guid: 95bb1d9c36f3d5945807af8e822c86c0, type: 3}
+  - {fileID: 2185498222102327942, guid: a13fa0c427065684ea17313416017670, type: 3}
+  - {fileID: -5397973969489964061, guid: a15ec72d317dfbe418bb0c677eff2df4, type: 3}
   backgroundSfx: {fileID: 8300000, guid: 2fdb9033a952de34ba1777ae113ae39a, type: 3}
   vcamera: {fileID: 1496912019}
 --- !u!1 &1496912018
@@ -5922,7 +5924,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1496912018}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -25}
+  m_LocalPosition: {x: 0, y: -2, z: -25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 515856084}

@@ -127,7 +127,7 @@ public abstract class Tile : MonoBehaviour
     }
 
     public virtual void DisplaySprite(){
-        if(isVisible || tileIsBroken) return;
+        if(isVisible || tileIsBroken || !gameObject.activeInHierarchy) return;
 
         if(tileSprite) spriteRenderer.sprite = tileSprite;
         spriteRenderer.color = spriteColor;

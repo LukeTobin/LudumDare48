@@ -98,7 +98,11 @@ public class Player : MonoBehaviour
 
         Tile _tile = hit.GetComponent<Tile>();
         if(_tile && _tile.canBeEntered){
-            DecreaseMovement(1);
+            DecreaseMovement(_tile.traversalCost);
+            if(movementPoints <= 0) {
+                ResetPlayer();
+                return;
+            }
             
             if(_tile is Tile_Bomb)
                 if(!bombs.Contains(_tile.GetComponent<Tile_Bomb>()) && !_tile.tileIsBroken) 
@@ -121,6 +125,8 @@ public class Player : MonoBehaviour
                 audio.clip = walkSfx;
                 audio.Play();
 
+                if(_tile is Tile_Finish) return;
+
                 input = wantedInput;
                 targetPosition = (Vector2)linearPosition + input;
                 direction = (targetPosition - (Vector2)linearPosition).normalized;
@@ -139,8 +145,9 @@ public class Player : MonoBehaviour
     public void DecreaseMovement(int amount){
         movementPoints -= amount;
         staminaText.text = movementPoints.ToString();
-        if(movementPoints <= 0) ResetPlayer();
+    }
 
+    public void ClearBombs(){
         for(int i = 0;i< bombs.Count;i++){
             if(!bombs[i]) return;
 
@@ -167,6 +174,24 @@ public class Player : MonoBehaviour
         animator.SetBool("falling", false);
 
         World.Instance.ResetTiles();
+        movementPoints = World.Instance.GetRoomMoves();
+        staminaText.text = movementPoints.ToString();
+
+        bombs.Clear();
+    }
+
+    public void NextStage(){
+        transform.position = spawn.position;
+        linearPosition = spawn.position;
+        targetPosition = spawn.position;
+        input = new Vector2(0, 0);
+
+        hasKey = false;
+        keyImg.enabled = false;
+
+        animator.SetBool("moving", false);
+        animator.SetBool("falling", false);
+
         movementPoints = World.Instance.GetRoomMoves();
         staminaText.text = movementPoints.ToString();
 

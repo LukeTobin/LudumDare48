@@ -65,7 +65,7 @@ public class World : MonoBehaviour
         activeRoom.gameObject.SetActive(false);
         currentRoomIndex++;
         if(rooms[currentRoomIndex]) activeRoom = Instantiate(rooms[currentRoomIndex]);
-        Player.Instance.ResetPlayer();
+        Player.Instance.NextStage();
     }
 
     public int GetRoomMoves(){
