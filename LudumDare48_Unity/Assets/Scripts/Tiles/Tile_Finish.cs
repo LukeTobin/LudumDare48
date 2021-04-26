@@ -12,7 +12,7 @@ public class Tile_Finish : Tile
 
     public override void OnTileEnter()
     {
-        Debug.Log("FINISH TILE");
+        World.Instance.NextRoom();
     }
 
     public override void RebuildTile()

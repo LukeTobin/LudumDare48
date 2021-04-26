@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class Player : MonoBehaviour
@@ -20,12 +21,15 @@ public class Player : MonoBehaviour
     [Header("References")]
     [SerializeField] TMP_Text staminaText;
     [SerializeField] Transform spawn;
+    [SerializeField] Image keyImg;
 
     Vector2 input;
     Vector2 targetPosition;
     Vector2 direction;
 
     Vector2 linearPosition;
+
+    bool hasKey = false;
 
     List<Tile> neighbours = new List<Tile>();
     List<Tile_Bomb> bombs = new List<Tile_Bomb>();
@@ -34,19 +38,19 @@ public class Player : MonoBehaviour
     SpriteRenderer spriteRenderer;
     AudioSource audio;
 
-    int _movementPoints;
-
     void Awake(){
         Instance = this;
     }
 
     void Start(){
-        staminaText.text = movementPoints.ToString();
-        _movementPoints = movementPoints;
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         audio = GetComponent<AudioSource>();
         linearPosition = transform.position;
+        keyImg.enabled = false;
+
+        movementPoints = World.Instance.GetRoomMoves();
+        staminaText.text = movementPoints.ToString();
     }
 
     void Update(){
@@ -99,6 +103,19 @@ public class Player : MonoBehaviour
             if(_tile is Tile_Bomb)
                 if(!bombs.Contains(_tile.GetComponent<Tile_Bomb>()) && !_tile.tileIsBroken) 
                     bombs.Add(_tile.GetComponent<Tile_Bomb>());
+
+            if(_tile is Tile_Key)
+                if(!hasKey){
+                    hasKey = true;
+                    keyImg.enabled = true;
+                }
+            
+            if(_tile is Tile_Door)
+                if(hasKey){
+                    _tile.GetComponent<Tile_Door>().UnlockDoor();
+                    hasKey = false;
+                    keyImg.enabled = false;
+                }
             
             if(_tile.EnterTile()){
                 audio.clip = walkSfx;
@@ -138,18 +155,21 @@ public class Player : MonoBehaviour
     }
 
     public void ResetPlayer(){
-        movementPoints = _movementPoints;
-        staminaText.text = movementPoints.ToString();
-
         transform.position = spawn.position;
         linearPosition = spawn.position;
         targetPosition = spawn.position;
         input = new Vector2(0, 0);
 
+        hasKey = false;
+        keyImg.enabled = false;
+
         animator.SetBool("moving", false);
         animator.SetBool("falling", false);
 
         World.Instance.ResetTiles();
+        movementPoints = World.Instance.GetRoomMoves();
+        staminaText.text = movementPoints.ToString();
+
         bombs.Clear();
     }
 
