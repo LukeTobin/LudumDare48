@@ -50,4 +50,4 @@ All of our sound is by [Sidearm Studio.](https://assetstore.unity.com/packages/a
 
 # Download
 
-You can find a free download of our game [here](LINK)
+You can find a free download of our game [here](https://luketobin.itch.io/cavebop)
