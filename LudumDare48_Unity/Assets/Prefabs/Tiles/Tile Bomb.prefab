@@ -97,7 +97,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.4
+  m_Volume: 0.6
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -236,6 +236,7 @@ MonoBehaviour:
   spriteHides: 1
   uniqueHiddenSprite: {fileID: -5489629921847468251, guid: 214ed84a72f15014db6af9e13178953e, type: 3}
   hiddenColor: {r: 0.6313726, g: 0.6313726, b: 0.6313726, a: 1}
+  hitsLeft: {fileID: 0}
   explodeDamage: 3
   indicatorSprite: {fileID: 819598047470993750, guid: d2fa85879a55e1744ab6084fabeb38d1, type: 3}
   tileLayer:

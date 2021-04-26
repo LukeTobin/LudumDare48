@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
     [SerializeField] LayerMask tileLayer;
     [Space]
     [SerializeField] int movementPoints = 30;
+    [SerializeField] float movementDelta = 1;
 
     [Header("Sound Effects")]
     [SerializeField] AudioClip walkSfx;
@@ -28,6 +29,7 @@ public class Player : MonoBehaviour
     Vector2 direction;
 
     Vector2 linearPosition;
+    float fixTimer;
 
     bool hasKey = false;
 
@@ -59,7 +61,7 @@ public class Player : MonoBehaviour
              if(currentTile && currentTile.GetComponent<Tile_Ladder>())
                 CheckMove(new Vector2(0,movementSize));
         }
-        if(Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)){
+        else if(Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)){
             CheckMove(new Vector2(0,-movementSize));
             //spriteRenderer
         }
@@ -75,6 +77,11 @@ public class Player : MonoBehaviour
 
     void FixedUpdate() {
         if(input == new Vector2(0, 0)) return;
+
+        fixTimer -= Time.deltaTime;
+        if(fixTimer <= 0){
+            transform.position = targetPosition;
+        }
 
         if((Vector2)transform.position != targetPosition)
             transform.position = (Vector2)transform.position + direction * movementSpeed * Time.deltaTime;
@@ -99,6 +106,7 @@ public class Player : MonoBehaviour
         Tile _tile = hit.GetComponent<Tile>();
         if(_tile && _tile.canBeEntered){
             DecreaseMovement(_tile.traversalCost);
+
             if(movementPoints <= 0) {
                 ResetPlayer();
                 return;
@@ -127,15 +135,20 @@ public class Player : MonoBehaviour
 
                 if(_tile is Tile_Finish) return;
 
-                input = wantedInput;
-                targetPosition = (Vector2)linearPosition + input;
-                direction = (targetPosition - (Vector2)linearPosition).normalized;
-                if(input == new Vector2(0,-1))
-                    animator.SetBool("falling", true);
-                else if(input == new Vector2(0, 1))
-                    animator.SetBool("climbing", true);
-                else
-                    animator.SetBool("moving", true);
+                if(!animator.GetBool("moving") || !animator.GetBool("climbing") || !animator.GetBool("falling")){
+                    input = wantedInput;
+                    targetPosition = (Vector2)linearPosition + input;
+                    direction = (targetPosition - (Vector2)linearPosition).normalized;
+
+                    if(input == new Vector2(0,-1))
+                        animator.SetBool("falling", true);
+                    else if(input == new Vector2(0, 1))
+                        animator.SetBool("climbing", true);
+                    else
+                        animator.SetBool("moving", true);
+
+                    fixTimer = movementDelta;
+                }
 
                 UpdateNeighbours(targetPosition);
             }
@@ -145,6 +158,7 @@ public class Player : MonoBehaviour
     public void DecreaseMovement(int amount){
         movementPoints -= amount;
         staminaText.text = movementPoints.ToString();
+        ClearBombs();
     }
 
     public void ClearBombs(){
@@ -152,16 +166,22 @@ public class Player : MonoBehaviour
             if(!bombs[i]) return;
 
             if(bombs[i].Countdown()){
-                if(bombs[i].PlayerIsNeighbours()) {
+                if(bombs[i].PlayerIsNeighbours())
                     ResetPlayer();
-                }else{
+                else
                     bombs.Remove(bombs[i]);
-                }
             }
         }
     }
 
     public void ResetPlayer(){
+        StartCoroutine(Reset());
+    }
+
+    IEnumerator Reset(){
+        World.Instance.transitions.SetTrigger("end");
+        yield return new WaitForSeconds(0.35f);
+
         transform.position = spawn.position;
         linearPosition = spawn.position;
         targetPosition = spawn.position;

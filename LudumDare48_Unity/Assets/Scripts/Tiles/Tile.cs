@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public abstract class Tile : MonoBehaviour
 {
@@ -37,6 +38,8 @@ public abstract class Tile : MonoBehaviour
     [SerializeField] Sprite uniqueHiddenSprite = null;
     [Tooltip("Color the tile will be when hidden")]
     [SerializeField] Color hiddenColor = new Color(0, 0, 0, 1);
+    [Space]
+    [SerializeField] protected TMP_Text hitsLeft;
 
     protected SpriteRenderer spriteRenderer;
     protected AudioSource audio;
@@ -93,6 +96,7 @@ public abstract class Tile : MonoBehaviour
         
 
         hitsRequired--;
+        if(hitsLeft) hitsLeft.text = hitsRequired.ToString();
         if(hitsRequired <= 0){
             OnTileEnter();
             OnTileDestroyed();
@@ -121,7 +125,8 @@ public abstract class Tile : MonoBehaviour
             audio.Play();
         }
 
-        World.Instance.ScreenShake(1f, 0.2f);
+        World.Instance.ScreenShake(0.5f, 0.2f);
+        if(hitsLeft) hitsLeft.text = "";
         
         // destroy effects
     }
@@ -129,6 +134,7 @@ public abstract class Tile : MonoBehaviour
     public virtual void DisplaySprite(){
         if(isVisible || tileIsBroken || !gameObject.activeInHierarchy) return;
 
+        if(hitsLeft) hitsLeft.text = hitsRequired.ToString();
         if(tileSprite) spriteRenderer.sprite = tileSprite;
         spriteRenderer.color = spriteColor;
         isVisible = true;
@@ -137,6 +143,7 @@ public abstract class Tile : MonoBehaviour
     public virtual void HideSprite(){
         if(!isVisible || tileIsBroken) return;
 
+        if(hitsLeft) hitsLeft.text = "";
         if(uniqueHiddenSprite) spriteRenderer.sprite = uniqueHiddenSprite;
         spriteRenderer.color = hiddenColor;
         isVisible = false;
@@ -146,6 +153,8 @@ public abstract class Tile : MonoBehaviour
         hitsRequired = _hitsRequired;
         tileIsBroken = _tileIsBroken;
         isVisible = false;
+
+        if(hitsLeft) hitsLeft.text = "";
 
         if(uniqueHiddenSprite) spriteRenderer.sprite = uniqueHiddenSprite;
         spriteRenderer.color = hiddenColor;

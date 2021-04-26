@@ -58,7 +58,8 @@ public class Tile_Bomb : Tile
             OnTileEnter();
             OnTileDestroyed();
             return true;
-        } 
+        }
+        if(hitsLeft) hitsLeft.text = hitsRequired.ToString();
 
         return false;
     }
