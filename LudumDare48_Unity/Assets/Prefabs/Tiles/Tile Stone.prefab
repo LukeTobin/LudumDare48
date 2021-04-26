@@ -222,7 +222,7 @@ MonoBehaviour:
   tileSprite: {fileID: 4747685307942977081, guid: 214ed84a72f15014db6af9e13178953e, type: 3}
   spriteColor: {r: 0.8862745, g: 0.8862745, b: 0.8862745, a: 1}
   canBeEntered: 1
-  hitsRequired: 4
+  hitsRequired: 2
   traversalCost: 1
   wiggleIntensity: 0.15
   wiggleTime: 0.1
