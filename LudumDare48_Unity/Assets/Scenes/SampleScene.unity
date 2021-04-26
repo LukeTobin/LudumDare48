@@ -2328,6 +2328,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rooms:
   - {fileID: 1623389801177876714, guid: 4a68fd095ceccfc4ebfc5a14f9e988d2, type: 3}
+  - {fileID: 48294981748973539, guid: 9dd9c9f6d1f19cb4ba428377c0f99e62, type: 3}
   - {fileID: -119469012711100905, guid: 95bb1d9c36f3d5945807af8e822c86c0, type: 3}
   - {fileID: 2185498222102327942, guid: a13fa0c427065684ea17313416017670, type: 3}
   - {fileID: -5397973969489964061, guid: a15ec72d317dfbe418bb0c677eff2df4, type: 3}
@@ -2338,6 +2339,8 @@ MonoBehaviour:
   - {fileID: -5397973969489964061, guid: d137abecaa274f849aff7636ad8e7263, type: 3}
   - {fileID: -5397973969489964061, guid: f9c06c9d0c5999045bbcbcd4c13ccf6d, type: 3}
   - {fileID: -5397973969489964061, guid: e940cc21700bdfc40827ee86b0998f5e, type: 3}
+  - {fileID: 48294981748973539, guid: 727993f45040f1747b633df93ca1982a, type: 3}
+  - {fileID: 48294981748973539, guid: 979eaf94b17cc454b8d21e433cb62157, type: 3}
   backgroundSfx: {fileID: 8300000, guid: 2fdb9033a952de34ba1777ae113ae39a, type: 3}
   vcamera: {fileID: 1496912019}
   levelText: {fileID: 1092176159}

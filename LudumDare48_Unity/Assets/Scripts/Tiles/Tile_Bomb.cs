@@ -52,7 +52,8 @@ public class Tile_Bomb : Tile
         if(hitsRequired <= 0){
             neighbours = GetNeighbours();
             foreach(Tile tile in neighbours){
-                tile.Damage(explodeDamage);
+                if(tile is Tile_Door || tile is Tile_Key){}
+                else tile.Damage(explodeDamage);
             }
 
             OnTileEnter();

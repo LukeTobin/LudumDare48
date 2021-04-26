@@ -139,6 +139,7 @@ MonoBehaviour:
   spriteHides: 0
   uniqueHiddenSprite: {fileID: 0}
   hiddenColor: {r: 0, g: 0, b: 0, a: 0}
+  hitsLeft: {fileID: 0}
 --- !u!1 &782002812341736913
 GameObject:
   m_ObjectHideFlags: 0
@@ -278,6 +279,7 @@ MonoBehaviour:
   spriteHides: 0
   uniqueHiddenSprite: {fileID: 0}
   hiddenColor: {r: 0, g: 0, b: 0, a: 0}
+  hitsLeft: {fileID: 0}
 --- !u!1 &2788557564231112324
 GameObject:
   m_ObjectHideFlags: 0
@@ -417,6 +419,7 @@ MonoBehaviour:
   spriteHides: 0
   uniqueHiddenSprite: {fileID: 0}
   hiddenColor: {r: 0, g: 0, b: 0, a: 0}
+  hitsLeft: {fileID: 0}
 --- !u!1 &2788557564321363352
 GameObject:
   m_ObjectHideFlags: 0
@@ -556,6 +559,7 @@ MonoBehaviour:
   spriteHides: 0
   uniqueHiddenSprite: {fileID: 0}
   hiddenColor: {r: 0, g: 0, b: 0, a: 0}
+  hitsLeft: {fileID: 0}
 --- !u!1 &2788557564563123012
 GameObject:
   m_ObjectHideFlags: 0
@@ -695,6 +699,7 @@ MonoBehaviour:
   spriteHides: 0
   uniqueHiddenSprite: {fileID: 0}
   hiddenColor: {r: 0, g: 0, b: 0, a: 0}
+  hitsLeft: {fileID: 0}
 --- !u!1 &2788557565259559965
 GameObject:
   m_ObjectHideFlags: 0
@@ -873,6 +878,7 @@ MonoBehaviour:
   spriteHides: 0
   uniqueHiddenSprite: {fileID: 0}
   hiddenColor: {r: 0, g: 0, b: 0, a: 0}
+  hitsLeft: {fileID: 0}
 --- !u!1 &2788557566013344109
 GameObject:
   m_ObjectHideFlags: 0
@@ -978,7 +984,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14bb26e318e782f4599d9ef6441d00aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roomMoves: 30
+  roomMoves: 20
 --- !u!1 &8640804203168708661
 GameObject:
   m_ObjectHideFlags: 0
@@ -1118,6 +1124,7 @@ MonoBehaviour:
   spriteHides: 0
   uniqueHiddenSprite: {fileID: 0}
   hiddenColor: {r: 0, g: 0, b: 0, a: 0}
+  hitsLeft: {fileID: 0}
 --- !u!1 &9039926148308591090
 GameObject:
   m_ObjectHideFlags: 0
@@ -1257,6 +1264,7 @@ MonoBehaviour:
   spriteHides: 0
   uniqueHiddenSprite: {fileID: 0}
   hiddenColor: {r: 0, g: 0, b: 0, a: 0}
+  hitsLeft: {fileID: 0}
 --- !u!1001 &20898724241948736
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1879,6 +1887,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2788557566013344098}
     m_Modifications:
+    - target: {fileID: 5933175463128761448, guid: e0a917040e8a19f48802cff46b3c1321, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8070205686727254006, guid: e0a917040e8a19f48802cff46b3c1321, type: 3}
       propertyPath: m_RootOrder
       value: 28
