@@ -2341,6 +2341,7 @@ MonoBehaviour:
   - {fileID: -5397973969489964061, guid: e940cc21700bdfc40827ee86b0998f5e, type: 3}
   - {fileID: 48294981748973539, guid: 727993f45040f1747b633df93ca1982a, type: 3}
   - {fileID: 48294981748973539, guid: 979eaf94b17cc454b8d21e433cb62157, type: 3}
+  - {fileID: 1623389801177876714, guid: 088306bf20249b74c85f4fa24d384369, type: 3}
   backgroundSfx: {fileID: 8300000, guid: 2fdb9033a952de34ba1777ae113ae39a, type: 3}
   vcamera: {fileID: 1496912019}
   levelText: {fileID: 1092176159}

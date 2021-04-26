@@ -228,7 +228,7 @@ MonoBehaviour:
   wiggleTime: 0
   wiggleSpeed: 0
   hitSfx: {fileID: 8300000, guid: e28bdc83745483a48a5fea55bb117008, type: 3}
-  destroySfx: {fileID: 8300000, guid: ee441cc36c44fed44ae8552146a8d3fa, type: 3}
+  destroySfx: {fileID: 8300000, guid: bdab26f944e480a4cabcf1fad09d71b3, type: 3}
   pitchNoise: 0.2
   tileIsBroken: 0
   uniqueDestroyedSprite: {fileID: 21300000, guid: 0a1e5383c5e15214fab203297f138583, type: 3}
