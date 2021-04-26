@@ -980,7 +980,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14bb26e318e782f4599d9ef6441d00aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roomMoves: 40
+  roomMoves: 35
 --- !u!1 &8640804203168708661
 GameObject:
   m_ObjectHideFlags: 0
