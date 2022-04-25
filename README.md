@@ -1,6 +1,6 @@
 # Ludum Dare 48
 
-This Ludum Dare's theme was "deeper and deeper". We worked in a team of two to create our game called [NAME]. Below, you will find more information about our creative process, our game's goals and assets we used.
+This Ludum Dare's theme was "deeper and deeper". We worked in a team of two to create our game called Cavebop. Below, you will find more information about our creative process, our game's goals and assets we used.
 
 ## Theme and concept
 
